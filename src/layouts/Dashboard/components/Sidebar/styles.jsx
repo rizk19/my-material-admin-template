@@ -89,5 +89,25 @@ export default theme => ({
   listDivider: {
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2)
-  }
+  },
+  nested: {
+    cursor: 'pointer',
+    '& $listItemText': {
+      paddingLeft: theme.spacing(3),
+      color: theme.palette.text.primary,
+      marginLeft: '-4px'
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.background.light,
+      borderLeft: `4px solid ${theme.palette.primary.main}`,
+      borderRadius: '4px',
+      '& $listItemText': {
+        color: theme.palette.text.primary
+      },
+      '& $listItemIcon': {
+        color: theme.palette.primary.main,
+        marginLeft: '-4px'
+      }
+    }
+  },
 });

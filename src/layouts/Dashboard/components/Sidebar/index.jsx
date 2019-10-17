@@ -14,7 +14,8 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Collapse
 } from '@material-ui/core';
 
 //Context
@@ -25,8 +26,8 @@ import {
   DashboardOutlined as DashboardIcon,
   PeopleOutlined as PeopleIcon,
   ShoppingBasketOutlined as ShoppingBasketIcon,
-  TextFields as TextFieldsIcon,
-  SettingsOutlined as SettingsIcon
+  TextFields as TextFieldsIcon, CameraAltRounded as Camera,
+  SettingsOutlined as SettingsIcon, ExpandMore, ExpandLess, BarChart, ShowChart,
 } from '@material-ui/icons';
 
 // Component styles
@@ -36,18 +37,10 @@ const Sidebar = props => {
 
   const collapseContext = useContext(CollapseContext);
 
-  const { collapseRawIngredients,
-    collapsePkgIngredients,
-    collapseRawStock,
-    collapsePkgStock,
-    collapseProduct,
-    collapseNextProduct,
-    setCollapseRawIngredients,
-    setCollapsePkgIngredients,
-    setCollapseRawStock,
-    setCollapsePkgStock,
-    setCollapseProduct,
-    setCollapseNextProduct } = collapseContext
+  const { collapseIngredients,
+    collapseStock,
+    setCollapseIngredients,
+    setCollapseStock, } = collapseContext
 
   const { classes, className } = props;
 
@@ -86,6 +79,100 @@ const Sidebar = props => {
             primary="Dashboard"
           />
         </ListItem>
+        <ListItem
+          button
+          onClick={() => setCollapseIngredients()}
+          activeClassName={classes.activeListItem}
+          className={classes.listItem}
+        >
+          <ListItemIcon className={classes.listItemIcon}>
+            <BarChart />
+          </ListItemIcon>
+          <ListItemText
+            classes={{ primary: classes.listItemText }}
+            primary="Bahan-bahan"
+          />
+          {collapseIngredients ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={collapseIngredients} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem
+              activeClassName={classes.activeListItem}
+              className={classes.nested}
+              component={NavLink}
+              to="/ingredient-raw"
+            >
+              <ListItemIcon className={classes.listItemIcon}>
+                <ShowChart />
+              </ListItemIcon>
+              <ListItemText
+                classes={{ primary: classes.listItemText }}
+                primary="Bahan Baku"
+              />
+            </ListItem>
+            <ListItem
+              activeClassName={classes.activeListItem}
+              className={classes.nested}
+              component={NavLink}
+              to="/ingredient-package"
+            >
+              <ListItemIcon className={classes.listItemIcon}>
+                <Camera />
+              </ListItemIcon>
+              <ListItemText
+                classes={{ primary: classes.listItemText }}
+                primary="Bahan Pengemas"
+              />
+            </ListItem>
+          </List>
+        </Collapse>
+        <ListItem
+          button
+          onClick={() => setCollapseStock()}
+          activeClassName={classes.activeListItem}
+          className={classes.listItem}
+        >
+          <ListItemIcon className={classes.listItemIcon}>
+            <BarChart />
+          </ListItemIcon>
+          <ListItemText
+            classes={{ primary: classes.listItemText }}
+            primary="Stock"
+          />
+          {collapseStock ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={collapseStock} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem
+              activeClassName={classes.activeListItem}
+              className={classes.nested}
+              component={NavLink}
+              to="/stock-raw"
+            >
+              <ListItemIcon className={classes.listItemIcon}>
+                <ShowChart />
+              </ListItemIcon>
+              <ListItemText
+                classes={{ primary: classes.listItemText }}
+                primary="Stock Baku"
+              />
+            </ListItem>
+            <ListItem
+              activeClassName={classes.activeListItem}
+              className={classes.nested}
+              component={NavLink}
+              to="/stock-package"
+            >
+              <ListItemIcon className={classes.listItemIcon}>
+                <Camera />
+              </ListItemIcon>
+              <ListItemText
+                classes={{ primary: classes.listItemText }}
+                primary="Stock Pengemas"
+              />
+            </ListItem>
+          </List>
+        </Collapse>
         <ListItem
           activeClassName={classes.activeListItem}
           className={classes.listItem}

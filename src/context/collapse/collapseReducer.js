@@ -1,45 +1,33 @@
 import {
-   SET_COLLAPSE_RAW_INGREDIENTS,
-   SET_COLLAPSE_PKG_INGREDIENTS,
-   SET_COLLAPSE_RAW_STOCK,
-   SET_COLLAPSE_PKG_STOCK,
+   SET_COLLAPSE_INGREDIENTS,
+   SET_COLLAPSE_STOCK,
    SET_COLLAPSE_PRODUCT,
    SET_COLLAPSE_NEXT_PRODUCT
 } from '../types'
 
 export default (state, action) => {
    switch (action.type) {
-      case SET_COLLAPSE_RAW_INGREDIENTS:
+      case SET_COLLAPSE_INGREDIENTS:
          return {
             ...state,
-            rawIngredients: !state.rawIngredients
+            ingredients: !state.ingredients
          }
-         case SET_COLLAPSE_PKG_INGREDIENTS:
+         case SET_COLLAPSE_STOCK:
             return {
                ...state,
-               pkgIngredients: !state.pkgIngredients
+               stock: !state.stock
             }
-            case SET_COLLAPSE_RAW_STOCK:
+            case SET_COLLAPSE_PRODUCT:
                return {
                   ...state,
-                  rawStock: !state.rawStock
+                  product: !state.product
                }
-               case SET_COLLAPSE_PKG_STOCK:
+               case SET_COLLAPSE_NEXT_PRODUCT:
                   return {
                      ...state,
-                     pkgStock: !state.pkgStock
+                     nextProduct: !state.nextProduct
                   }
-                  case SET_COLLAPSE_PRODUCT:
-                     return {
-                        ...state,
-                        product: !state.product
-                     }
-                     case SET_COLLAPSE_NEXT_PRODUCT:
-                        return {
-                           ...state,
-                           nextProduct: !state.nextProduct
-                        }
-                        default:
-                           return state
+                  default:
+                     return state
    }
 }

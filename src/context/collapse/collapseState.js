@@ -4,44 +4,30 @@ import React, {
 import CollapseContext from './collapseContext'
 import collapseReducer from './collapseReducer'
 import {
-   SET_COLLAPSE_RAW_INGREDIENTS,
-   SET_COLLAPSE_PKG_INGREDIENTS,
-   SET_COLLAPSE_RAW_STOCK,
-   SET_COLLAPSE_PKG_STOCK,
+   SET_COLLAPSE_INGREDIENTS,
+   SET_COLLAPSE_STOCK,
    SET_COLLAPSE_PRODUCT,
    SET_COLLAPSE_NEXT_PRODUCT
 } from '../types'
 
 const CollapseState = props => {
    const initialState = {
-      rawIngredients: false,
-      pkgIngredients: false,
-      rawStock: false,
-      pkgStock: false,
+      ingredients: false,
+      stock: false,
       product: false,
       nextProduct: false,
    }
 
    const [state, dispatch] = useReducer(collapseReducer, initialState)
 
-   const setCollapseRawIngredients = () =>
+   const setCollapseIngredients = () =>
       dispatch({
-         type: SET_COLLAPSE_RAW_INGREDIENTS,
+         type: SET_COLLAPSE_INGREDIENTS,
       })
 
-   const setCollapsePkgIngredients = () =>
+   const setCollapseStock = () =>
       dispatch({
-         type: SET_COLLAPSE_PKG_INGREDIENTS,
-      })
-
-   const setCollapseRawStock = () =>
-      dispatch({
-         type: SET_COLLAPSE_RAW_STOCK,
-      })
-
-   const setCollapsePkgStock = () =>
-      dispatch({
-         type: SET_COLLAPSE_PKG_STOCK,
+         type: SET_COLLAPSE_STOCK,
       })
 
    const setCollapseProduct = () =>
@@ -56,16 +42,12 @@ const CollapseState = props => {
 
    return ( <CollapseContext.Provider
             value = {{
-               collapseRawIngredients: state.rawIngredients,
-               collapsePkgIngredients: state.pkgIngredients,
-               collapseRawStock: state.rawStock,
-               collapsePkgStock: state.pkgStock,
+               collapseIngredients: state.ingredients,
+               collapseStock: state.stock,
                collapseProduct: state.product,
                collapseNextProduct: state.nextProduct,
-               setCollapseRawIngredients,
-               setCollapsePkgIngredients,
-               setCollapseRawStock,
-               setCollapsePkgStock,
+               setCollapseIngredients,
+               setCollapseStock,
                setCollapseProduct,
                setCollapseNextProduct
             }}>

@@ -7,7 +7,6 @@ import classNames from "classnames";
 import compose from "recompose/compose";
 
 // Internal
-import withAuth from "../../common/Auth/withAuth";
 
 // Material helpers
 import { withStyles } from '@material-ui/core';
@@ -16,7 +15,8 @@ import { withStyles } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 
 // Shared layouts
-import { Dashboard as DashboardLayout, Portlet } from '../../layouts';
+import { Dashboard as DashboardLayout } from '../../layouts/index';
+import { Portlet } from '../../components/index';
 
 // Custom components
 
@@ -57,6 +57,5 @@ StockPackage.propTypes = {
 
 export default compose(
   withRouter,
-  withAuth,
   withStyles(styles)
 )(StockPackage);
