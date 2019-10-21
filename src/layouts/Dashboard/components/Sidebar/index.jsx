@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 // Externals
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { loadCSS } from 'fg-loadcss';
 
 // Material helpers
 import { withStyles } from '@material-ui/core';
@@ -17,7 +18,7 @@ import {
   ListItemText,
   Collapse
 } from '@material-ui/core';
-
+import Icon from '@material-ui/core/Icon';
 //Context
 import CollapseContext from '../../../../context/collapse/collapseContext'
 
@@ -40,7 +41,15 @@ const Sidebar = props => {
   const { collapseIngredients,
     collapseStock,
     setCollapseIngredients,
-    setCollapseStock, } = collapseContext
+    setCollapseStock, } = collapseContext;
+
+
+    useEffect(() => {
+      loadCSS(
+          'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+          document.querySelector('#font-awesome-css'),
+      );
+  }, []);
 
   const { classes, className } = props;
 
@@ -86,7 +95,7 @@ const Sidebar = props => {
           className={classes.listItem}
         >
           <ListItemIcon className={classes.listItemIcon}>
-            <BarChart />
+              <Icon className="fa fa-fill" style={{width:'auto', fontSize:18, marginLeft:'3px'}}/>
           </ListItemIcon>
           <ListItemText
             classes={{ primary: classes.listItemText }}
@@ -103,7 +112,7 @@ const Sidebar = props => {
               to="/ingredient-raw"
             >
               <ListItemIcon className={classes.listItemIcon}>
-                <ShowChart />
+              <Icon className="fa fa-vial" style={{width:'auto', fontSize:18, marginLeft:'3px'}}/>
               </ListItemIcon>
               <ListItemText
                 classes={{ primary: classes.listItemText }}
@@ -117,7 +126,7 @@ const Sidebar = props => {
               to="/ingredient-package"
             >
               <ListItemIcon className={classes.listItemIcon}>
-                <Camera />
+                <Icon className="fab fa-dropbox" style={{width:'auto', fontSize:18, marginLeft:'2px'}}/>
               </ListItemIcon>
               <ListItemText
                 classes={{ primary: classes.listItemText }}
@@ -133,7 +142,7 @@ const Sidebar = props => {
           className={classes.listItem}
         >
           <ListItemIcon className={classes.listItemIcon}>
-            <BarChart />
+              <Icon className="	fas fa-boxes" style={{width:'auto', fontSize:18, marginLeft:'2px'}}/>
           </ListItemIcon>
           <ListItemText
             classes={{ primary: classes.listItemText }}
@@ -150,7 +159,7 @@ const Sidebar = props => {
               to="/stock-raw"
             >
               <ListItemIcon className={classes.listItemIcon}>
-                <ShowChart />
+              <Icon className="	fas fa-vials" style={{width:'auto', fontSize:18, marginLeft:'1px'}}/>
               </ListItemIcon>
               <ListItemText
                 classes={{ primary: classes.listItemText }}
@@ -164,7 +173,7 @@ const Sidebar = props => {
               to="/stock-package"
             >
               <ListItemIcon className={classes.listItemIcon}>
-                <Camera />
+              <Icon className="	fas fa-box" style={{width:'auto', fontSize:18, marginLeft:'2px'}}/>
               </ListItemIcon>
               <ListItemText
                 classes={{ primary: classes.listItemText }}

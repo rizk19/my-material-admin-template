@@ -94,7 +94,7 @@ export default theme => ({
     cursor: 'pointer',
     '& $listItemText': {
       paddingLeft: theme.spacing(3),
-      color: theme.palette.text.primary,
+      color: theme.palette.text.secondary,
       marginLeft: '-4px'
     },
     '&:hover': {
@@ -102,7 +102,7 @@ export default theme => ({
       borderLeft: `4px solid ${theme.palette.primary.main}`,
       borderRadius: '4px',
       '& $listItemText': {
-        color: theme.palette.text.primary
+        color: theme.palette.primary.main
       },
       '& $listItemIcon': {
         color: theme.palette.primary.main,
